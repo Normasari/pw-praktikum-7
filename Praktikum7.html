@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <div class="container" id="container">
+          <img src="peta.jpg" class="gambar" alt="Peta"/>
+        </div>
+      </div>
+        <div class="A">
+          <select class="B" id="Provinsi" onchange="OutputKota()">
+            <option selected disabled>Pilih Provinsi</option>
+            <option value="Kalimantan_Tengah">Kalimantan Tengah</option>
+            <option value="DKI_Jakarta">DKI Jakarta</option>
+            <option value="Sulawesi_Utara">Sulawesi Utara</option>
+            <option value="Jawa_Barat">Jawa Barat</option>
+          </select>
+        </div>
+        <div class="A">
+          <select class="B" id="kota" onchange="Output()">
+            <option selected disabled>Pilih Kota</option>
+            <option value="" disabled>-</option>
+          </select>
+        </div>
+      </div>
+          <h2 class="index" id="hasil"></h2>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="container">
+        <nav class="navbar" id="nav">
+          <div class="container-fluid">
+            <button class="tombol" type="button" id="button" onclick="darkMode()">Change Dark Mode</button>
+          </div>
+        </nav>
+      </div>
+
+    <script>
+      const Provinsi = document.getElementById("Provinsi");
+      const kota = document.getElementById("kota");
+      const arrKota = {
+        Kalimantan_Tengah: ["Palangka Raya", "Seruyan", "Kapuas", "Katingan","Gunung Mas","Sukamara"],
+        Sulawesi_Utara: ["Manado", "Tomohon", "Kotamobagu", "Bitung", "Minahasa","Tondano"],
+        Jawa_Barat: ["Cianjur", "Indramayu", "Sukabumi", "Bandung", "Cirebon", "Subang"],
+        DKI_Jakarta: ["Jakarta Barat", "Jakarta Timur", "Jakarta Selatan", "Jakarta Utara","Jakarta Pusat"],
+      };
+
+      function OutputKota() {
+        const ProvinsiVal = Provinsi.value;
+        if (ProvinsiVal === "Kalimantan_Tengah") {
+          kota.innerHTML = "<option selected disabled>Pilih Kota</option>";
+          for (let i = 0; i < arrKota["Kalimantan_Tengah"].length; i++) {
+            kota.innerHTML += `<option value="${arrKota["Kalimantan_Tengah"][i]}">${arrKota["Kalimantan_Tengah"][i]}</option>`;
+          }
+        } else if (ProvinsiVal === "DKI_Jakarta") {
+          kota.innerHTML = "<option selected disabled>Pilih Kota</option>";
+          for (let i = 0; i < arrKota["DKI_Jakarta"].length; i++) {
+            kota.innerHTML += `<option value="${arrKota["DKI_Jakarta"][i]}">${arrKota["DKI_Jakarta"][i]}</option>`;
+          }
+        } else if (ProvinsiVal === "Sulawesi_Utara") {
+          kota.innerHTML = "<option selected disabled>Pilih Kota</option>";
+          for (let i = 0; i < arrKota["Sulawesi_Utara"].length; i++) {
+            kota.innerHTML += `<option value="${arrKota["Sulawesi_Utara"][i]}">${arrKota["Sulawesi_Utara"][i]}</option>`;
+          }
+        } else if (ProvinsiVal === "Jawa_Barat") {
+          kota.innerHTML = "<option selected disabled>Pilih Kota</option>";
+          for (let i = 0; i < arrKota["Jawa_Barat"].length; i++) {
+            kota.innerHTML += `<option value="${arrKota["Jawa_Barat"][i]}">${arrKota["Jawa_Barat"][i]}</option>`;
+          }
+        } 
+      }
+      function Output() {
+        const ProvinsiVal = document.getElementById("Provinsi").value;
+        const KotaVal = document.getElementById("kota").value;
+        const result = document.getElementById("hasil");
+        result.innerText = `Pada Provinsi ${ProvinsiVal} ada Kota ${KotaVal}`;
+      }
+      function darkMode() {
+        const darkMode = document.body.classList.toggle("darkMode");
+        const container = document.getElementsByClassName("container");
+        container[0].classList.toggle("darkContainer");
+        container[1].classList.toggle("darkContainer");
+        const navBar = document.getElementById("nav");
+        const button = document.getElementById("button");
+
+        if (darkMode == true) {
+          button.innerHTML = "Change Light Mode";
+          button.classList.replace("btn-outline-dark", "btn-outline-dark");
+          navBar.classList.replace("navbar-light", "navbar-light");
+          navBar.classList.replace("bg-light", "bg-light");
+        } else {
+          button.innerHTML = "Change Dark Mode";
+          button.classList.replace("btn-outline-light", "btn-outline-light");
+          navBar.classList.replace("navbar-dark", "navbar-dark");
+          navBar.classList.replace("bg-dark", "bg-dark");
+        }
+      }
+    </script>
+  </body>
+</html>
